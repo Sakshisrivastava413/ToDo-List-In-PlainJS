@@ -109,6 +109,66 @@ function createEditButton(itemRow, itemCol, todo, btnbtn) {
   })
 }
 
+function createInput(todo) {
+  var i = document.createElement("input")
+  i.type = "text"
+  i.placeholder = "Edit task..."
+  i.id = todo.id
+  i.value = todo.value;
+  i.className = "col-sm-9 form-control mx-3"
+  return i
+}
+
+function save(todo, itemRow, newInputRef, itemCol, btnbtn) {
+  var saveBtn = document.createElement("button")
+  saveBtn.type = "button";
+  saveBtn.className = "col-sm btn btn-secondary btn-sm btn-block mx-3 my-1"
+  saveBtn.id = todo.id
+  saveBtn.appendChild(document.createTextNode("Save"));
+  saveBtn.addEventListener("click", (e) => {
+    // console.log(e)
+    // console.log(e.path[1])
+    console.log(newInputRef.value);
+
+
+    // console.log(todos[0].todo)
+    for (var i = 0; i < todos.length; i++) {
+      if (todos[i].id == saveBtn.id) {
+        todos[i].value = newInputRef.value
+        console.log(todos[i].value)
+        // localStorage.setItem(saveBtn.id, todos[i].value)
+        // firebaseRef.child(saveBtn.id).set(todos[i].value);
+
+        // console.log("rty", e.target.value)
+        break;
+      }
+    }
+    console.log(todos)
+    console.log(newInputRef)
+    // itemCol.appendChild(document.createTextNode(newInputRef.value))
+
+    itemRow.replaceChild(itemCol.appendChild(document.createTextNode(newInputRef.value)), newInputRef);
+    // itemRow.replaceChild(btnbtn, s);
+    // itemRow.replaceChild(btnDiv, c);
+
+  })
+  return saveBtn
+}
+
+function cancel(itemRow, itemCol, t) {
+  var cancelBtn = document.createElement("button")
+  cancelBtn.type = "button";
+  cancelBtn.className = "col-sm btn btn-secondary btn-sm btn-block mx-3 my-1"
+  cancelBtn.appendChild(document.createTextNode("Cancel"));
+  cancelBtn.addEventListener("click", () => {
+    // createItemRow(itemRow, value)
+    itemRow.replaceChild(itemCol, t);
+    // console.log(document.getElementById("ji"))    
+
+  })
+  return cancelBtn
+}
+
 
 function checkInputText(value, msg) {
   if (value == null || value == "") {
