@@ -1,3 +1,6 @@
+// var myTodoList = new Firebase('firebase/app')
+var firebaseRef = firebase.database().ref()
+
 // focussing input-box on opening the page
 var inputVal = document.getElementById('input')
 inputVal.focus();
@@ -34,9 +37,9 @@ function addTask() {
   if (checkInputText(inputVal.value.trim(), "Please enter a task")) return;
   var todo = { id: d.getTime(), value: inputVal.value }
   todos.push(todo)
-  // store.setItem(todo.id, todo.value);
-  // firebaseRef.child(todo.id).set(todo.value)
-  // console.log(store)
+  store.setItem(todo.id, todo.value);
+  firebaseRef.child(todo.id).set(todo.value)
+  console.log(store)
 
   createElements(todo);
   inputVal.value = ''
@@ -85,7 +88,7 @@ function createDeleteButton(itemRow, id) {
       if (todos[i].id == id) {
         console.log(todos[i].id)
         todos.splice(i, 1);
-        // firebaseRef.child(id).remove()
+        firebaseRef.child(id).remove()
         break;
       }
     }
@@ -152,7 +155,7 @@ function save(todo, itemRow, newInputRef, itemCol, btnbtn) {
         todos[i].value = newInputRef.value
         console.log(todos[i].value)
         localStorage.setItem(saveBtn.id, todos[i].value)
-        // firebaseRef.child(saveBtn.id).set(todos[i].value);
+        firebaseRef.child(saveBtn.id).set(todos[i].value);
 
         // console.log("rty", e.target.value)
         break;
