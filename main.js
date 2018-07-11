@@ -16,7 +16,7 @@ function addTask() {
   var d = new Date()
 
   var inputVal = document.getElementById('input')
-  // if (checkInputText(inputVal.value.trim(), "Please enter a task")) return;
+  if (checkInputText(inputVal.value.trim(), "Please enter a task")) return;
   var todo = { id: d.getTime(), value: inputVal.value }
   todos.push(todo)
   // store.setItem(todo.id, todo.value);
@@ -107,4 +107,13 @@ function createEditButton(itemRow, itemCol, todo, btnbtn) {
     console.log(itemRow)
     // t.focus();
   })
+}
+
+
+function checkInputText(value, msg) {
+  if (value == null || value == "") {
+    alert(msg);
+    return true;
+  }
+  return false;
 }
