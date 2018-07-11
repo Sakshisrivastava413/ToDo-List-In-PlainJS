@@ -11,6 +11,21 @@ inputVal.addEventListener("keyup", function (event) {
 
 var todos = [];
 
+var store = window.localStorage;
+for (var i = 0; i < localStorage.length; i++) {
+  console.log(localStorage.getItem(localStorage.key(i)));
+  console.log(localStorage.key(i))
+  var task = {
+    id: localStorage.key(i),
+    value: localStorage.getItem(localStorage.key(i))
+  }
+  todos.push(task)
+  console.log(task)
+  createElements(task)
+  console.log(todos)
+}
+
+
 
 function addTask() {
   var d = new Date()
@@ -76,7 +91,7 @@ function createDeleteButton(itemRow, id) {
     }
     console.log("after: ", todos)
     itemRow.remove(e.path[2])
-    // localStorage.removeItem(id);
+    localStorage.removeItem(id);
 
 
   });
@@ -98,14 +113,14 @@ function createEditButton(itemRow, itemCol, todo, btnbtn) {
 
   btnDiv.addEventListener("click", function (e) {
     console.log(e)
-    // var t = createInput(todo)
-    // var s = save(todo, itemRow, t, itemCol, btnbtn)
-    // var c = cancel(itemRow, itemCol, t)
-    // itemRow.replaceChild(t, itemCol);
-    // itemRow.replaceChild(s, btnbtn);
-    // itemRow.replaceChild(c, btnDiv);
+    var t = createInput(todo)
+    var s = save(todo, itemRow, t, itemCol, btnbtn)
+    var c = cancel(itemRow, itemCol, t)
+    itemRow.replaceChild(t, itemCol);
+    itemRow.replaceChild(s, btnbtn);
+    itemRow.replaceChild(c, btnDiv);
     console.log(itemRow)
-    // t.focus();
+    t.focus();
   })
 }
 
@@ -136,7 +151,7 @@ function save(todo, itemRow, newInputRef, itemCol, btnbtn) {
       if (todos[i].id == saveBtn.id) {
         todos[i].value = newInputRef.value
         console.log(todos[i].value)
-        // localStorage.setItem(saveBtn.id, todos[i].value)
+        localStorage.setItem(saveBtn.id, todos[i].value)
         // firebaseRef.child(saveBtn.id).set(todos[i].value);
 
         // console.log("rty", e.target.value)
