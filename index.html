@@ -11,6 +11,29 @@
 </head>
 
 <body>
+    <div class="container">
+        <div class="row mt-4">
+          <div class="col">
+            <h2>ToDo List</h2>
+          </div>
+        </div>
+        <div class="row  alert alert-primary">
+          <div class="col-9">
+            <input type="text" class="form-control" placeholder="Create a task..." aria-label="Username" aria-describedby="basic-addon1"
+              id="input">
+    
+          </div>
+          <div class="col align-items-end">
+            <button type="button" class="btn btn-primary btn-md btn-block">Add Date</button>
+    
+          </div>
+          <div class="col align-items-end">
+            <button type="button" class="btn btn-primary btn-md btn-block" onclick="addTask()" id="adding">Add Task</button>
+          </div>
+        </div>
+        <div id="list-items"></div>
+    </div>
+      
 </body>
 
 </html>
