@@ -37,7 +37,7 @@ function createElements(todo) {
   var itemColoumn = createItemRow(itemRow, todo.value)
   var btnbtn = createDeleteButton(itemRow, todo.id)
   itemRow.appendChild(btnbtn)
-  // createEditButton(itemRow, itemColoumn, todo, btnbtn)
+  createEditButton(itemRow, itemColoumn, todo, btnbtn)
   document.getElementById("list-items").appendChild(itemRow)
 }
 
@@ -81,4 +81,30 @@ function createDeleteButton(itemRow, id) {
 
   });
   return btnDiv;
+}
+
+function createEditButton(itemRow, itemCol, todo, btnbtn) {
+  var btnDiv = document.createElement("div");
+  btnDiv.className = "col-sm"
+  itemRow.appendChild(btnDiv)
+  var btn = document.createElement("button")
+  btn.type = "button"
+  btn.className = "btn btn-secondary btn-sm btn-block"
+  btn.id = todo.id
+  console.log(itemRow);
+
+  btnDiv.appendChild(btn)
+  btn.appendChild(document.createTextNode("Edit"));
+
+  btnDiv.addEventListener("click", function (e) {
+    console.log(e)
+    // var t = createInput(todo)
+    // var s = save(todo, itemRow, t, itemCol, btnbtn)
+    // var c = cancel(itemRow, itemCol, t)
+    // itemRow.replaceChild(t, itemCol);
+    // itemRow.replaceChild(s, btnbtn);
+    // itemRow.replaceChild(c, btnDiv);
+    console.log(itemRow)
+    // t.focus();
+  })
 }
